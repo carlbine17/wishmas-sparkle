@@ -3,7 +3,11 @@ import { toast } from "sonner";
 
 export interface WishlistData {
   name: string;
-  items: string[];
+  wishlist1: string;
+  wishlist2: string;
+  wishlist3: string;
+  nickname: string;
+  aboutMe: string;
 }
 
 export const useGoogleSheets = (spreadsheetUrl: string) => {
@@ -42,11 +46,15 @@ export const useGoogleSheets = (spreadsheetUrl: string) => {
         
         // Skip header row and process data
         const wishlistData: WishlistData[] = rows.slice(1).map(row => {
-          const name = row[0] || "";
-          // All columns after name are wishlist items
-          const items = row.slice(1).filter(item => item && item.trim() !== "");
-          return { name, items };
-        }).filter(item => item.name && item.items.length > 0);
+          return {
+            name: row[0] || "",
+            wishlist1: row[1] || "",
+            wishlist2: row[2] || "",
+            wishlist3: row[3] || "",
+            nickname: row[4] || "",
+            aboutMe: row[5] || ""
+          };
+        }).filter(item => item.name.trim() !== "");
         
         setData(wishlistData);
         setLoading(false);

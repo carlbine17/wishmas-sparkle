@@ -51,12 +51,16 @@ const Index = () => {
         )}
 
         {!loading && !error && data.length > 0 && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+          <div className="max-w-4xl mx-auto space-y-2">
             {data.map((wishlist, index) => (
               <WishlistCard
                 key={index}
                 name={wishlist.name}
-                items={wishlist.items}
+                wishlist1={wishlist.wishlist1}
+                wishlist2={wishlist.wishlist2}
+                wishlist3={wishlist.wishlist3}
+                nickname={wishlist.nickname}
+                aboutMe={wishlist.aboutMe}
               />
             ))}
           </div>
