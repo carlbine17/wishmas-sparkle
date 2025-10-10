@@ -28,27 +28,26 @@ const Index = () => {
         </header>
 
        <section className="mb-12 animate-fade-in backdrop-blur-sm bg-card/40 dark:bg-card/30 rounded-3xl p-6 border border-border/50 shadow-festive dark:shadow-warm mx-auto max-w-4xl overflow-hidden">
-  <div className="space-y-6">
-    {/* Text content */}
-    <div>
-      <h2 className="text-3xl md:text-4xl font-serif font-bold mb-4 text-primary dark:text-accent">
-        🎁 Gifts Presentation Venue
-      </h2>
-      <div className="space-y-3">
-        <div className="flex items-start gap-3">
-          <Calendar className="h-5 w-5 text-primary dark:text-accent mt-1 flex-shrink-0" />
-          <div>
-            <p className="font-semibold text-card-foreground">December 29-30</p>
-            <p className="text-sm text-muted-foreground">Join us for the gift exchange!</p>
-          </div>
-        </div>
-        <div className="flex items-start gap-3">
-          <MapPin className="h-5 w-5 text-primary dark:text-accent mt-1 flex-shrink-0" />
-          <div>
-            <p className="font-serif text-2xl font-bold text-primary dark:text-accent">Casa Navi</p>
-            <p className="text-sm text-muted-foreground">A beautiful venue for our celebration</p>
-          </div>
-        </div>
+  <div className="text-center space-y-6">
+    <h2 className="text-3xl md:text-4xl font-serif font-bold mb-4 text-primary dark:text-accent">
+      🎁 Gifts Presentation Venue
+    </h2>
+
+    {/* Date block with icon */}
+    <div className="flex flex-col items-center gap-2">
+      <Calendar className="h-6 w-6 text-primary dark:text-accent" />
+      <div>
+        <p className="font-semibold text-card-foreground">December 29-30</p>
+        <p className="text-sm text-muted-foreground">Join us for the gift exchange!</p>
+      </div>
+    </div>
+
+    {/* Venue block with icon */}
+    <div className="flex flex-col items-center gap-2">
+      <MapPin className="h-6 w-6 text-primary dark:text-accent" />
+      <div>
+        <p className="font-serif text-2xl font-bold text-primary dark:text-accent">Casa Navi</p>
+        <p className="text-sm text-muted-foreground">A beautiful venue for our celebration</p>
       </div>
     </div>
 
@@ -57,7 +56,7 @@ const Index = () => {
       <img
         src={casaNaviImage}
         alt="Casa Navi venue"
-        className="rounded-2xl shadow-festive dark:shadow-warm w-full h-96 md:h-[300px] object-cover"
+        className="rounded-2xl shadow-festive dark:shadow-warm w-full h-96 md:h-[400px] object-cover"
       />
     </div>
   </div>
