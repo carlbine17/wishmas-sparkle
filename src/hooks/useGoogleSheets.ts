@@ -39,7 +39,7 @@ export const useGoogleSheets = (spreadsheetUrl: string) => {
         const text = await response.text();
         const rows = text.split("\n").map(row => {
           // Parse CSV properly, handling quoted values
-          const regex = /(".*?"|[^",\s]+)(?=\s*,|\s*$)/g;
+          const regex = /(".*?"|[^",]+)(?=,|$)/g;
           const matches = row.match(regex);
           return matches ? matches.map(m => m.replace(/^"|"$/g, '').trim()) : [];
         }).filter(row => row.length > 0 && row[0]);
@@ -47,12 +47,12 @@ export const useGoogleSheets = (spreadsheetUrl: string) => {
         // Skip header row and process data
         const wishlistData: WishlistData[] = rows.slice(1).map(row => {
           return {
-            name: row[0] || "",
-            wishlist1: row[1] || "",
-            wishlist2: row[2] || "",
-            wishlist3: row[3] || "",
-            nickname: row[4] || "",
-            aboutMe: row[5] || ""
+            name: row[2] || "",
+            wishlist1: row[5] || "",
+            wishlist2: row[6] || "",
+            wishlist3: row[7] || "",
+            nickname: row[5] || "",
+            aboutMe: row[7] || ""
           };
         }).filter(item => item.name.trim() !== "");
         

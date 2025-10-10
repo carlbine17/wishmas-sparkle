@@ -35,7 +35,7 @@ const WishlistCard = ({ name, wishlist1, wishlist2, wishlist3, nickname, aboutMe
           <div className="px-4 pb-4 space-y-3 border-t border-border pt-4">
             {wishlist1 && (
               <div>
-                <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1">Wishlist 1</p>
+                <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1">Email</p>
                 <p className="text-card-foreground">{wishlist1}</p>
               </div>
             )}
