@@ -56,7 +56,7 @@ const Index = () => {
       <img
           src={casaNaviImage}
           alt="Casa Navi venue"
-         className="rounded-2xl shadow-festive dark:shadow-warm w-full h-64 md:h-[400px] object-cover"
+         className="rounded-2xl shadow-festive dark:shadow-warm w-full h-48 md:h-[400px] object-cover"
       />
     </div>
   </div>
