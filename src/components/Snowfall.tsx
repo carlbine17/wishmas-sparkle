@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
 
 const Snowfall = () => {
-  const [snowflakes, setSnowflakes] = useState<Array<{ id: number; left: number; duration: number; delay: number }>>([]);
+  const [snowflakes, setSnowflakes] = useState<
+    Array<{ id: number; left: number; duration: number; delay: number }>
+  >([]);
 
   useEffect(() => {
-    const isDark = document.documentElement.classList.contains("dark");
-    if (isDark) return;
-
     const flakes = Array.from({ length: 30 }, (_, i) => ({
       id: i,
       left: Math.random() * 100,
@@ -14,22 +13,6 @@ const Snowfall = () => {
       delay: Math.random() * 10,
     }));
     setSnowflakes(flakes);
-
-    const observer = new MutationObserver(() => {
-      const isDark = document.documentElement.classList.contains("dark");
-      if (isDark) {
-        setSnowflakes([]);
-      } else {
-        setSnowflakes(flakes);
-      }
-    });
-
-    observer.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ["class"],
-    });
-
-    return () => observer.disconnect();
   }, []);
 
   return (

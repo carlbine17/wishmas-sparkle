@@ -19,12 +19,20 @@ const Index = () => {
       <div className="container mx-auto px-4 py-12 relative z-10">
         <header className="text-center mb-8 animate-fade-in backdrop-blur-sm bg-card/30 dark:bg-card/20 rounded-3xl p-8 border border-border/50 shadow-festive dark:shadow-warm mx-auto max-w-4xl">
           <h1 className="text-5xl md:text-7xl font-serif font-bold mb-4 text-primary dark:text-secondary drop-shadow-sm">
-            Christmas Gift Exchange
+          Christmas Gift Exchange
           </h1>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            <span className="dark:hidden">🎄 Browse everyone's wishlists and find the perfect gift! 🎁</span>
-            <span className="hidden dark:inline">☕ Cozy up and find the perfect gift for everyone! 🎁</span>
+           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+           <span className="dark:hidden">🎄 Browse everyone's wishlists and find the perfect gift! 🎁</span>
+           <span className="hidden dark:inline">☕ Cozy up and find the perfect gift for everyone! 🎁</span>
           </p>
+
+          {/* New Wishlists button */}
+           <a
+             href="#wishlists"
+             className="inline-block mt-6 px-6 py-3 bg-primary text-white font-semibold rounded-lg shadow-festive hover:bg-primary/90 transition-colors"
+           >
+            Wishlists
+           </a>
         </header>
 
        <section className="mb-12 animate-fade-in backdrop-blur-sm bg-card/40 dark:bg-card/30 rounded-3xl p-6 border border-border/50 shadow-festive dark:shadow-warm mx-auto max-w-4xl overflow-hidden">
@@ -88,20 +96,28 @@ const Index = () => {
         )}
 
         {!loading && !error && data.length > 0 && (
-          <div className="max-w-4xl mx-auto space-y-2">
-            {data.map((wishlist, index) => (
-              <WishlistCard
-                key={index}
-                name={wishlist.name}
-                wishlist1={wishlist.wishlist1}
-                wishlist2={wishlist.wishlist2}
-                wishlist3={wishlist.wishlist3}
-                nickname={wishlist.nickname}
-                aboutMe={wishlist.aboutMe}
-              />
-            ))}
-          </div>
-        )}
+  <div id="wishlists" className="max-w-4xl mx-auto space-y-6">
+    {/* New Participants header */}
+    <h2 className="text-3xl md:text-4xl font-serif font-bold text-center text-primary dark:text-accent">
+      Participants
+    </h2>
+
+    {/* Wishlist cards */}
+    <div className="space-y-2">
+      {data.map((wishlist, index) => (
+        <WishlistCard
+          key={index}
+          name={wishlist.name}
+          wishlist1={wishlist.wishlist1}
+          wishlist2={wishlist.wishlist2}
+          wishlist3={wishlist.wishlist3}
+          nickname={wishlist.nickname}
+          aboutMe={wishlist.aboutMe}
+        />
+      ))}
+    </div>
+  </div>
+)}
       </div>
 
       <footer className="text-center py-8 text-muted-foreground">
