@@ -16,23 +16,37 @@ const WishlistCard = ({ name, wishlist1, wishlist2, wishlist3, nickname, aboutMe
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <Card className="bg-card border-2 animate-fade-in overflow-hidden">
-      <Collapsible open={isOpen} onOpenChange={setIsOpen}>
-        <div className="p-4 flex items-center justify-between hover:bg-muted/50 transition-colors">
-          <div className="flex items-center gap-3 flex-1">
-            <div className="p-2 rounded-full bg-gradient-christmas dark:bg-gradient-coffee">
-              <Gift className="h-5 w-5 text-primary-foreground" />
-            </div>
-            <h3 className="text-lg font-serif font-bold text-card-foreground">{name}</h3>
+    <Card className="bg-card/90 backdrop-blur-sm border-2 animate-fade-in overflow-hidden shadow-festive dark:shadow-warm transition-all hover:shadow-glow-gold dark:hover:shadow-glow-cinnamon relative group">
+      {/* Gift ribbon effect */}
+      <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-16 h-full bg-gradient-christmas dark:bg-gradient-coffee opacity-20 group-hover:opacity-30 transition-opacity"></div>
+      <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-christmas dark:bg-gradient-coffee opacity-40"></div>
+      
+      {/* Gift bow */}
+      <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 z-10">
+        <div className="relative">
+          <div className="w-8 h-8 bg-gradient-christmas dark:bg-gradient-coffee rounded-full shadow-md flex items-center justify-center">
+            <Gift className="h-4 w-4 text-white" />
           </div>
-          <CollapsibleTrigger className="flex items-center gap-2 text-sm font-semibold text-primary dark:text-accent hover:opacity-80 transition-opacity">
+          {/* Bow loops */}
+          <div className="absolute -left-3 top-1/2 transform -translate-y-1/2 w-6 h-6 bg-gradient-christmas dark:bg-gradient-coffee rounded-full opacity-80"></div>
+          <div className="absolute -right-3 top-1/2 transform -translate-y-1/2 w-6 h-6 bg-gradient-christmas dark:bg-gradient-coffee rounded-full opacity-80"></div>
+        </div>
+      </div>
+
+      <Collapsible open={isOpen} onOpenChange={setIsOpen}>
+        <div className="p-4 pt-6 flex items-center justify-between hover:bg-muted/50 transition-all duration-300 relative">
+          <div className="flex items-center gap-3 flex-1">
+            <h3 className="text-lg font-serif font-bold text-card-foreground bg-gradient-christmas dark:bg-gradient-coffee bg-clip-text text-transparent">{name}</h3>
+          </div>
+          <CollapsibleTrigger className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-christmas dark:bg-gradient-coffee text-white font-semibold hover:opacity-90 transition-all shadow-md hover:shadow-lg">
+            <Gift className="h-4 w-4" />
             Wishlists
             <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
           </CollapsibleTrigger>
         </div>
         
-        <CollapsibleContent>
-          <div className="px-4 pb-4 space-y-3 border-t border-border pt-4">
+        <CollapsibleContent className="data-[state=open]:animate-accordion-down data-[state=closed]:animate-accordion-up overflow-hidden transition-all">
+          <div className="px-4 pb-4 space-y-3 border-t border-border pt-4 animate-fade-in">
             {wishlist1 && (
               <div>
                 <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1">Wishlist 1</p>
