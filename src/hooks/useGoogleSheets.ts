@@ -48,10 +48,10 @@ export const useGoogleSheets = (spreadsheetUrl: string) => {
         const wishlistData: WishlistData[] = rows.slice(1).map(row => {
           return {
             name: row[2] || "",
-            wishlist1: row[5] || "",
-            wishlist2: row[6] || "",
-            wishlist3: row[7] || "",
-            nickname: row[5] || "",
+            wishlist1: row[4] || "",
+            wishlist2: row[5] || "",
+            wishlist3: row[6] || "",
+            nickname: row[3] || "",
             aboutMe: row[7] || ""
           };
         }).filter(item => item.name.trim() !== "");
