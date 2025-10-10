@@ -40,7 +40,7 @@ const WishlistCard = ({ name, wishlist1, wishlist2, wishlist3, nickname, aboutMe
           </div>
           <CollapsibleTrigger className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-christmas dark:bg-gradient-coffee text-white font-semibold hover:opacity-90 transition-all shadow-md hover:shadow-lg">
             <Gift className="h-4 w-4" />
-            Wishlists
+            Wishlist
             <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
           </CollapsibleTrigger>
         </div>
