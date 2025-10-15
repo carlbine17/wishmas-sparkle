@@ -18,8 +18,11 @@ const WishlistCard = ({ name, wishlist1, wishlist2, wishlist3, nickname, aboutMe
   return (
     <Card className="bg-card/90 backdrop-blur-sm border-2 animate-fade-in overflow-hidden shadow-festive dark:shadow-warm transition-all hover:shadow-glow-gold dark:hover:shadow-glow-cinnamon relative group">
       {/* Gift ribbon effect */}
-      <div className={`absolute top-0 left-1/2 transform -translate-x-1/2 w-16 h-full bg-gradient-christmas dark:bg-gradient-coffee transition-opacity duration-300 ${isOpen ? 'opacity-10' : 'opacity-20'} group-hover:opacity-30`}></div>
+      <div className={`absolute top-0 left-1/2 transform -translate-x-1/2 w-16 h-full bg-gradient-christmas dark:bg-gradient-coffee transition-opacity duration-300 ${isOpen ? 'opacity-10' : 'opacity-20'} ${!isOpen ? 'group-hover:opacity-30' : ''}`}></div>
+
       <div className={`absolute top-0 left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-christmas dark:bg-gradient-coffee transition-opacity duration-300 ${isOpen ? 'opacity-20' : 'opacity-40'}`}></div>
+
+
       
       {/* Gift bow */}
       <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 z-10">
