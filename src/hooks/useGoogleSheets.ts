@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { toast } from "sonner";
+import Papa from "papaparse";
 
 export interface WishlistData {
   name: string;
@@ -18,44 +19,28 @@ export const useGoogleSheets = (spreadsheetUrl: string) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Extract the spreadsheet ID from the URL
         const urlMatch = spreadsheetUrl.match(/\/d\/([a-zA-Z0-9-_]+)/);
-        if (!urlMatch) {
-          throw new Error("Invalid spreadsheet URL");
-        }
-        
+        if (!urlMatch) throw new Error("Invalid spreadsheet URL");
+
         const spreadsheetId = urlMatch[1];
         const gid = spreadsheetUrl.match(/gid=(\d+)/)?.[1] || "0";
-        
-        // Construct the CSV export URL
         const csvUrl = `https://docs.google.com/spreadsheets/d/${spreadsheetId}/export?format=csv&gid=${gid}`;
-        
+
         const response = await fetch(csvUrl);
-        
-        if (!response.ok) {
-          throw new Error("Failed to fetch data from Google Sheets. Please make sure the sheet is publicly accessible.");
-        }
-        
+        if (!response.ok) throw new Error("Failed to fetch data");
+
         const text = await response.text();
-        const rows = text.split("\n").map(row => {
-          // Parse CSV properly, handling quoted values
-          const regex = /(".*?"|[^",]+)(?=,|$)/g;
-          const matches = row.match(regex);
-          return matches ? matches.map(m => m.replace(/^"|"$/g, '').trim()) : [];
-        }).filter(row => row.length > 0 && row[0]);
-        
-        // Skip header row and process data
-        const wishlistData: WishlistData[] = rows.slice(1).map(row => {
-          return {
-            name: row[2] || "",
-            wishlist1: row[4] || "",
-            wishlist2: row[5] || "",
-            wishlist3: row[6] || "",
-            nickname: row[3] || "",
-            aboutMe: row[7] || ""
-          };
-        }).filter(item => item.name.trim() !== "");
-        
+        const parsed = Papa.parse(text, { header: true });
+
+        const wishlistData: WishlistData[] = (parsed.data as any[]).map(row => ({
+          name: row["NAME"] || "",
+          wishlist1: row["Wishlist #1 — All I want for Christmas is this! 😭"] || "",
+          wishlist2: row["Wishlist #2 — Bet na bet ko rin kasi ito hihi"] || "",
+          wishlist3: row["Wishlist #3 — Hindi ko super want pero it’s a need 🙈"] || "",
+          nickname: row["NICKNAME"] || "",
+          aboutMe: row["Para mas makilala ka ng nakabunot sa’yo, share mo naman hobbies o mga hilig mo pleaseeee 🤩"] || ""
+        })).filter(item => item.name.trim() !== "");
+
         setData(wishlistData);
         setLoading(false);
         toast.success("Wishlists loaded successfully!");
